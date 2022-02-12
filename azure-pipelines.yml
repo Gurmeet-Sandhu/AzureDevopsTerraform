@@ -19,8 +19,26 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/main'
     backendServiceArm: 'Pay-As-You-Go(34176af6-6df0-47ef-a8cb-99f46d66332c)'
     backendAzureRmResourceGroupName: 'terraform-rg'
     backendAzureRmStorageAccountName: 'gstfaccount'
     backendAzureRmContainerName: 'gstfcontainer'
     backendAzureRmKey: 'terraform.tfstate'
+
+- task: TerraformTaskV2@2
+  displayName: terraform plan -out tfplan
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/main'
+    commandOptions: '-out=tfplan'
+    environmentServiceNameAzureRM: 'Pay-As-You-Go(34176af6-6df0-47ef-a8cb-99f46d66332c)'
+
+- task: TerraformTaskV2@2
+  displayName: terraform apply tfplan
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    commandOptions: 'tfplan'
+    environmentServiceNameAzureRM: 'Pay-As-You-Go(34176af6-6df0-47ef-a8cb-99f46d66332c)'
