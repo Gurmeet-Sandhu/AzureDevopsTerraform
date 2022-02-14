@@ -1,9 +1,16 @@
 terraform {
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "~>2.91.0"
     }
+  }
+  
+  backend "azurerm" {
+    resource_group_name  = "terraform-rg"
+    storage_account_name = "gstfaccount"
+    container_name       = "gstfcontainer"
+    key                  = "terraform.tfstate"
   }
 }
 
