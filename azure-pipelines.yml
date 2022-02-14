@@ -16,6 +16,7 @@ steps:
     terraformVersion: '1.1.5'
 
 - task: TerraformTaskV2@2
+  displayName: terraform init
   inputs:
     provider: 'azurerm'
     command: 'init'
@@ -36,6 +37,7 @@ steps:
     environmentServiceNameAzureRM: 'Pay-As-You-Go(34176af6-6df0-47ef-a8cb-99f46d66332c)'
 
 - task: TerraformTaskV2@2
+  displayName: terraform apply tfplan
   inputs:
     provider: 'azurerm'
     command: 'apply'
