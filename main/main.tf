@@ -20,6 +20,11 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
+  name     = "resourcegroup-test"
+  location = "westus2"
+}
+
+resource "azurerm_resource_group" "rg" {
   name     = "another-resourcegroup-test"
   location = "westus2"
 }
