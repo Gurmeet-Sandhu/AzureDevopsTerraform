@@ -16,3 +16,8 @@ resource "azurerm_resource_group" "rg" {
   name     = "resourcegroup-test"
   location = "westus2"
 }
+
+resource "azurerm_resource_group" "another-rg" {
+  name     = "another-resourcegroup-test"
+  location = "westus2"
+}
